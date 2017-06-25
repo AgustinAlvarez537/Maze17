@@ -5,8 +5,8 @@ namespace CardboardGestures.Conditions
     public class Condition_NearCube : AbstractCondition
     {
         public GameObject objeto1;
-        public GameObject cubito;
-        public bool showCubito;
+        public GameObject zonaCubica;
+        public bool showZonaCubica;
         public float lado;
         public float oldLado;
         public Vector3 posicion;
@@ -15,13 +15,13 @@ namespace CardboardGestures.Conditions
 
         void Start()
         {
-			if (cubito == null) 
+			if (zonaCubica == null) 
 			{
-				cubito = GameObject.CreatePrimitive (PrimitiveType.Cube);
-				cubito.transform.position = posicion;
-				cubito.transform.localScale = new Vector3(lado / 2, lado / 2, lado / 2);
+				zonaCubica = GameObject.CreatePrimitive (PrimitiveType.Cube);
+				zonaCubica.transform.position = posicion;
+				zonaCubica.transform.localScale = new Vector3(lado / 2, lado / 2, lado / 2);
 			}
-            cubito.GetComponent<MeshRenderer>().materials = new Material[0];
+            zonaCubica.GetComponent<MeshRenderer>().materials = new Material[0];
         }
 
         public override bool satisfied()
@@ -33,7 +33,7 @@ namespace CardboardGestures.Conditions
 					BoxCollider c = objeto1.AddComponent<BoxCollider>();
 					c.size = new Vector3 (10, 10, 10);
 				}
-				if (cubito.GetComponent<BoxCollider>().bounds.Intersects(objeto1.GetComponent<BoxCollider>().bounds))
+				if (zonaCubica.GetComponent<BoxCollider>().bounds.Intersects(objeto1.GetComponent<BoxCollider>().bounds))
                 {
                     return true;
                 }
